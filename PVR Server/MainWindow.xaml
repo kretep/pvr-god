@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PVR_God"
         mc:Ignorable="d"
-        Title="Jeugddorp Inschrijving" Height="350" Width="525" Loaded="Window_Loaded" Closing="Window_Closing" FontSize="18">
-    <Grid Loaded="Grid_Loaded">
+        Title="Jeugddorp Inschrijving" Height="623.4" Width="525" Loaded="Window_Loaded" Closing="Window_Closing" FontSize="18">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="76*"/>
             <ColumnDefinition Width="179*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="txtLocalIP" HorizontalAlignment="Left" Height="34" Margin="5,12,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="314" Grid.Column="1" IsReadOnly="True"/>
+        <TextBox x:Name="txtLocalIP" HorizontalAlignment="Left" Height="34" Margin="5,12,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="224" Grid.Column="1" IsReadOnly="True"/>
         <Label Content="Adres" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="125" Height="36"/>
         <Label Content="Database" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top" Width="125" Height="36"/>
         <Label Content="API" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top" Width="125" Height="36"/>
@@ -19,8 +19,9 @@
         <Button x:Name="btnRestartDatabase" Content="Herstart" Grid.Column="1" HorizontalAlignment="Left" Margin="5,121,0,0" VerticalAlignment="Top" Width="100" Height="31" Click="btnRestartDatabase_Click"/>
         <Button x:Name="btnRestartAPI" Content="Herstart" Grid.Column="1" HorizontalAlignment="Left" Margin="5,157,0,0" VerticalAlignment="Top" Width="100" Height="31" Click="btnRestartAPI_Click"/>
         <Button x:Name="btnRestartServer" Content="Herstart" Grid.Column="1" HorizontalAlignment="Left" Margin="5,193,0,0" VerticalAlignment="Top" Width="100" Height="31" Click="btnRestartServer_Click"/>
-        <Button x:Name="btnLaunchClient" Content="Open inschrijving" Grid.Column="1" HorizontalAlignment="Left" Margin="5,51,0,0" VerticalAlignment="Top" Width="314" Click="btnLaunchClient_Click"/>
+        <Button x:Name="btnLaunchClient" Content="Open inschrijving" Grid.Column="1" HorizontalAlignment="Left" Margin="5,51,0,0" VerticalAlignment="Top" Width="224" Click="btnLaunchClient_Click"/>
         <Button x:Name="btnRestartAll" Content="Herstart alles" Grid.Column="1" HorizontalAlignment="Left" Margin="5,243,0,0" VerticalAlignment="Top" Width="144" Height="31" Click="btnRestartAll_Click" />
+        <TextBox x:Name="txtOutput" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="270" Margin="10,307,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="490" FontSize="14" FontFamily="Consolas" IsReadOnly="True" VerticalScrollBarVisibility="Visible" TextChanged="txtOutput_TextChanged" />
 
     </Grid>
 </Window>

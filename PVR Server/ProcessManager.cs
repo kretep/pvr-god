@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Timers;
+using System.Windows.Threading;
 
 namespace PVR_God
 {
@@ -14,7 +14,7 @@ namespace PVR_God
         private Process restheartProcess;
         private Process serverProcess;
 
-        private System.Timers.Timer timer;
+        private DispatcherTimer timer;
 
         public ProcessManager()
         {
@@ -24,25 +24,27 @@ namespace PVR_God
             {
                 if (process.ProcessName == "mongod")
                 {
+                    Console.WriteLine("Database already running");
                     mongodProcess = process;
                 }
                 if (process.ProcessName == "java")
                 {
                     if (process.GetCommandLine().EndsWith("restheart.jar")) {
+                        Console.WriteLine("API already running");
                         restheartProcess = process;
                     }
                 }
                 if (process.ProcessName == "pvr-server")
                 {
+                    Console.WriteLine("Server already running");
                     serverProcess = process;
                 }
             }
 
             // Set up timer
-            timer = new System.Timers.Timer(1000);
-            timer.Elapsed += OnTimer;
-            timer.AutoReset = true;
-            timer.Enabled = false;
+            timer = new DispatcherTimer();
+            timer.Tick += OnTimer;
+            timer.Interval = new TimeSpan(0, 0, 1);
         }
 
         public void RunMongod()
@@ -145,15 +147,23 @@ namespace PVR_God
 
         public void RunAll()
         {
-            RunMongod();
-            Thread.Sleep(3000);
-            RunRestheart();
-            RunServer();
+            if (mongodProcess == null)
+            {
+                RunMongod();
+                Thread.Sleep(3000);
+            }
+            if (restheartProcess == null)
+            {
+                RunRestheart();
+            }
+            if (serverProcess == null) {
+                RunServer();
+            }
             Thread.Sleep(1000);
             timer.Start();
         }
 
-        public void OnTimer(Object source, ElapsedEventArgs e)
+        public void OnTimer(Object source, EventArgs e)
         {
             RunNonRunning();
         }
@@ -186,9 +196,21 @@ namespace PVR_God
 
             // If any process is not running, restart by 'RunAll'
             // (already running will not be run again).
-            if (!seenMongod) mongodProcess = null;
-            if (!seenRestheart) restheartProcess = null;
-            if (!seenServer) serverProcess = null;
+            if (!seenMongod)
+            {
+                Console.WriteLine("Database stopped unexpectedly");
+                mongodProcess = null;
+            }
+            if (!seenRestheart)
+            {
+                Console.WriteLine("API stopped unexpectedly");
+                restheartProcess = null;
+            }
+            if (!seenServer)
+            {
+                Console.WriteLine("Server stopped unexpectedly");
+                serverProcess = null;
+            }
             if (!seenMongod || !seenRestheart || !seenServer)
             {
                 timer.Stop();

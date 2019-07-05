@@ -23,21 +23,18 @@ namespace PVR_God
     public partial class MainWindow : Window
     {
 
-        private ProcessManager pm = new ProcessManager();
+        private ProcessManager pm;
 
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-
+            Console.SetOut(new ControlWriter(txtOutput));
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             txtLocalIP.Text = GetLocalIPAddresses();
+            pm = new ProcessManager();
             pm.RunAll();
         }
 
@@ -79,6 +76,11 @@ namespace PVR_God
         private void btnRestartAll_Click(object sender, RoutedEventArgs e)
         {
             pm.RestartAll();
+        }
+
+        private void txtOutput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtOutput.ScrollToEnd();
         }
     }
 }
