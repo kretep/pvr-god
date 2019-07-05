@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,7 +34,14 @@ namespace PVR_God
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // Display this machine's local IP address
             txtLocalIP.Text = GetLocalIPAddresses();
+
+            // Log version
+            var linkTimeLocal = Assembly.GetExecutingAssembly().GetLinkerTime();
+            Console.WriteLine("Application version: " + linkTimeLocal);
+
+            // Get things started
             pm = new ProcessManager();
             pm.RunAll();
         }
