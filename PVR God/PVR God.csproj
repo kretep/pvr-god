@@ -129,9 +129,6 @@
     <None Include="PVR God_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="jd_n2G_icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="jd.ico" />
   </ItemGroup>
   <ItemGroup>

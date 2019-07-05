@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PVR God", "PVR Server\PVR God.csproj", "{B80209DA-DF1A-4CFD-8982-9BF73A71C337}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PVR God", "PVR God\PVR God.csproj", "{B80209DA-DF1A-4CFD-8982-9BF73A71C337}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
